@@ -13,6 +13,7 @@ const {User} = require('../models')
 // controllers
 const test = async (req, res) => {
     res.json({ message: 'User endpoint OK!'});
+    console.log('This is a test')
 }
 const signup = async (req, res) => {
     console.log('----- INSIDE OF SIGNUP -----')

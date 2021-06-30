@@ -9,6 +9,10 @@ const PORT = process.env.PORT || 8000;
 // API
 const users = require('./api/users');
 const books = require('./api/books');
+const plants = require('./api/plants');
+const gardens = require('./api/gardens');
+
+
 
 // Middleware
 app.use(cors());
@@ -24,9 +28,15 @@ app.get('/', (req, res) => {
     res.status(200).json({ message: 'Smile, you are being watched by the Backend Engineering Team' });
 });
 
+
+
+
 // Routes
 app.use('/api/users', users);
 app.use('/api/books', books)
+app.use('/api/plants', plants)
+app.use('/api/gardens', gardens)
+
 
 app.get('/*', (req, res) => {
     res.status(404).json({ message: 'Data not found' });

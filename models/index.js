@@ -22,10 +22,13 @@ db.on('error', err => console.log (`Database error`, err));
 
 const User = require('./User');
 const Book = require('./Book');
+const Garden = require('./Garden');
+
 
 
 //Export all models from file
 module.exports = {
     User,
     Book,
+    Garden
 }
