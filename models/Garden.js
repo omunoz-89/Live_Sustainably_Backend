@@ -17,7 +17,8 @@ const gardenSchema = new Schema({
     sun: String,
     sowing_method: String,
     spacing: String,
-    user_id: String
+    user_id: String,
+    notes: [String],
 })
 
 

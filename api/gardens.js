@@ -60,9 +60,22 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
     console.log(req.body);
-    const { name, id, scientific_name, description, sowing_method, spacing, sun} = req.body;
+    const { name, id, image_url, scientific_name, description, sowing_method, spacing, sun, newNote} = req.body;
+    if(newNote === null){
+        try {
+            const result = await Garden.findByIdAndUpdate(id, {name: name, scientific_name: scientific_name, description: description, sun: sun, sowing_method: sowing_method, spacing: spacing, image_url: image_url})
+            console.log(result)
+            return res.status(200).json({ message: 'Plant was updated successfully.'})
+        } catch (error) {
+            console.log('Error inside of UPDATE route');
+            console.log(error);
+            return res.status(400).json({ message: 'Plant was not updated. Please try again....'})
+            
+        }
+    } else {
     try {
-        const result = await Garden.findByIdAndUpdate(id, {name: name, scientific_name: scientific_name, description: description, sun: sun, sowing_method: sowing_method, spacing: spacing})
+        const result = await Garden.findByIdAndUpdate(id, {name: name, scientific_name: scientific_name, description: description, sun: sun, sowing_method: sowing_method, spacing: spacing, image_url: image_url, $push: {notes: newNote}})
+        result.save();
         console.log(result)
         return res.status(200).json({ message: 'Plant was updated successfully.'})
     } catch (error) {
@@ -71,7 +84,7 @@ const update = async (req, res) => {
         return res.status(400).json({ message: 'Plant was not updated. Please try again....'})
         
     }
-
+    }
 }
 
 
