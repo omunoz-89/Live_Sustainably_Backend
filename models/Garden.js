@@ -7,18 +7,20 @@ const gardenSchema = new Schema({
         type: String,
         required: true
     },
-    id: {
+    plant_id: {
         type: Number,
         required: true,
-        unique: true
     },
+    image_url: String,
     scientific_name: String,
     description: String,
     sun: String,
     sowing_method: String,
     spacing: String,
+    user_id: String
 })
 
 
 const Garden = mongoose.model('Garden', gardenSchema);
 module.exports = Garden
+

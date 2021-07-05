@@ -24,7 +24,8 @@ const userSchema = new Schema({
     date: {
         type: Date,
         default: Date.now()
-    }
+    },
+    garden: [{ type: mongoose.Schema.Types.ObjectId, ref: "Garden" }],
 })
 
 
