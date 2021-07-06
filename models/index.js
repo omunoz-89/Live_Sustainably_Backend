@@ -1,6 +1,12 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
+let connectionString = "";
+if (process.env.NODE_ENV === "production") {
+  connectionString = process.env.DB_URL;
+} else {
+  connectionString = process.env.MONGO_URI;
+}
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
